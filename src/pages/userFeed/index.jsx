@@ -1,17 +1,28 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 
 import { FaThList, FaThLarge } from 'react-icons/fa';
 import Tweet from '../../component/Tweet';
 import TweetContext from '../../context/tweetContext';
+import UserIsLoggedContext from '../../context/tweetContext copy';
+
+import { getAuthUser } from '../../hooks/db';
 
 import * as S from './style';
 
 export default function Feed() {
+	const [connectedUser, setConnectedUser] = useState({});
+
 	const [tweetsList, setTweetsList] = useState([]);
 
 	const { createNewTweet, setCreateNewTeet } = useContext(TweetContext);
+	const { userIsLoged, setUserIsLoged } = useContext(UserIsLoggedContext);
 
 	const [displayStyleList, setDisplayStyleList] = useState(false);
+
+	useEffect(() => {
+		setConnectedUser(getAuthUser());
+		setUserIsLoged(true);
+	}, []);
 
 	function changeDisplay() {
 		setDisplayStyleList(!displayStyleList);
@@ -29,7 +40,7 @@ export default function Feed() {
 						<div className="welcome-user-content">
 							<h2>Bem vindo</h2>
 							<h3>
-								User Name <span>!</span>
+								{connectedUser.displayName} <span>!</span>
 							</h3>
 						</div>
 						<span>Sair</span>

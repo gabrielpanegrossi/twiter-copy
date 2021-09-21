@@ -1,5 +1,5 @@
 import { Link, useHistory } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 
 import { signInWithGoogle, loginWithEmailAndPassword } from '../../hooks/db';
 

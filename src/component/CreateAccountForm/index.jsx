@@ -85,18 +85,14 @@ export default function CreateAccountForm() {
 				<h2>Create account</h2>
 				<div>
 					<input placeholder="Name" onChange={getNameValue} />
-					{nameError ? (
+					{nameError && (
 						<label>Por favor, preencha esse campo corretamente.</label>
-					) : (
-						''
 					)}
 				</div>
 				<div>
 					<input placeholder="E-mail" onChange={getEmailValue} />
-					{emailError ? (
+					{emailError && (
 						<label>Por favor, preencha esse campo corretamente.</label>
-					) : (
-						''
 					)}
 				</div>
 				<div>
@@ -105,12 +101,10 @@ export default function CreateAccountForm() {
 						placeholder="Password"
 						onChange={getPasswordValue}
 					/>
-					{passwordError ? (
+					{passwordError && (
 						<label>
 							Por favor, preencha esse campo com pelo menos 6 digitos.
 						</label>
-					) : (
-						''
 					)}
 				</div>
 				<Link to="/login" className="create-account">
