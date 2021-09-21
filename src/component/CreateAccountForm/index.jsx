@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useState } from 'react';
 import { signUp } from '../../hooks/db';
 
@@ -11,6 +11,8 @@ export default function CreateAccountForm() {
 	const [emailError, setEmailError] = useState(false);
 	const [password, setPassword] = useState('');
 	const [passwordError, setPasswordError] = useState(false);
+
+	const history = useHistory();
 
 	function validateEmail(email) {
 		const re =
@@ -61,6 +63,7 @@ export default function CreateAccountForm() {
 
 	function successCallback() {
 		alert('Usuario cadastrado com sucesso!');
+		history.push('/login');
 	}
 
 	function errorCallback(error) {
